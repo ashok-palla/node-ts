@@ -1,9 +1,19 @@
-## Skeleton for Node.js applications written in TypeScript
+# Node.js express applications written in TypeScript
+
+## express, mssql
 
 ### Development
 
 ```bash
 npm run dev
+```
+
+### Run Server
+
+```bash
+goto /dist folder
+
+nodemon server.js
 ```
 
 ### Running tests
