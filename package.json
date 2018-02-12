@@ -19,9 +19,10 @@
     "express": "4.16.2",
     "fs": "0.0.1-security",
     "mssql": "^4.1.0",
-    "tedious": "2.3.1",
     "nodemailer": "^4.4.2",
     "nodemon": "1.14.12",
+    "os": "^0.1.1",
+    "tedious": "2.3.1",
     "tslint": "^5.9.1"
   },
   "devDependencies": {

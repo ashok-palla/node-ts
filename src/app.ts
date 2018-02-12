@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as apiController from "./controllers/api";
+const os:any = require("./controllers/os");
 const app: any = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

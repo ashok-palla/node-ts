@@ -1,11 +1,11 @@
 
 interface IAccount {
-    user: String;
-    pass: string;
+    readonly user: String;
+    readonly pass: string;
 }
 
 interface IParams {
-    name: string;
-    dataType: any;
-    value: number | string;
+    readonly name: string;
+    readonly dataType: any;
+    readonly value: number | string;
 }
