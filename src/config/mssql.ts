@@ -3,10 +3,10 @@ import * as log from "../logger/log";
 import { isUndefined } from "util";
 
 const config: object = {
-    user: "sa",
-    password: "123",
-    server: "localhost",
-    database: "CR"
+    user: "PM_Login",
+    password: "7mpzidn49DG$!RQ",
+    server: "10.10.0.9",
+    database: "Employee_New"
 };
 
 export let authenticate: any = (body: ILoginRequestParams, callback) => {
@@ -44,6 +44,13 @@ export let CITY_GET: any = (body: ICityPostRequestParams, callback) => {
 export let CITY_DELETE: any = (body: ICityPostRequestParams, callback) => {
     sql.connect(config).then(pool => { return pool.request().query("delete from [Admin].CITY where CityID = " + body.CityID); })
         .then(result => { callback({ status: 200, data: "City Deleted Succesfully." }); sql.close(); })
+        .catch(err => { log.errorLog(err); callback({ status: 500, data: err.originalError.info.message }); sql.close(); });
+};
+
+export let EMPLOYEE_GET: any = (params: IEmployeeGetRequestParams, callback) => {
+    var query = params.id ? "SELECT * FROM DBO.EMPLOYEEDATAORG WHERE [Employee Code] = " + params.id : "SELECT * FROM DBO.EMPLOYEEDATAORG";
+    sql.connect(config).then(pool => { return pool.request().query(query); })
+        .then(result => { callback({ status: 200, data: result.recordset }); sql.close(); })
         .catch(err => { log.errorLog(err); callback({ status: 500, data: err.originalError.info.message }); sql.close(); });
 };
 

@@ -1,0 +1,3 @@
+interface IEmployeeGetRequestParams {
+    id?: number
+}

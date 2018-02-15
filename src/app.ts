@@ -15,4 +15,7 @@ app.put("/city", apiController.CITY_INSERT);
 app.post("/city", apiController.CITY_GET);
 app.delete("/city", apiController.CITY_DELETE);
 
+app.get("/employee/", apiController.EMPLOYEE_GET);
+app.get("/employee/?:id", apiController.EMPLOYEE_GET);
+
 module.exports = app;
