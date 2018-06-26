@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as mail from "../nodemailer";
 const file_path: string = "./logger/logFiles/";
 
-if (!fs.existsSync(file_path)) { fs.mkdirSync(file_path); }
+// if (!fs.existsSync(file_path)) { fs.mkdirSync(file_path); }
 
 export let writeLog: any = (msg) => {
     const fileName: string = (new Date()).getFullYear() + "_" + getWeek() + ".log";

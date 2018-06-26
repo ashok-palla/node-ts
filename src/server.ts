@@ -1,3 +1,4 @@
 const app: any = require("./app");
-const server: any = app.listen(4200, () => { console.log("Press CTRL+C to stop express server"); });
+var port = process.env.port || 3000;
+const server: any = app.listen(port, (res) => { console.log(port); });
 export = server;
