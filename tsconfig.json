@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": false,
   },
   "files": [
     "./node_modules/@types/mocha/index.d.ts",
@@ -13,6 +13,7 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/*.test.ts"
   ]
 }
