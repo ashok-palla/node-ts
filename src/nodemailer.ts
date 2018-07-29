@@ -1,7 +1,7 @@
 import * as nodemailer from "nodemailer";
 import * as fs from "fs";
 import * as log from "./logger/log";
-const account: IAccount = { "user": "ashok_palla@merilytics.com", "pass": "G4jrEPqzxv2" };
+const account: IAccount = { "user": "ashok_palla@merilytics.com", "pass": "" };
 let transporter: any = nodemailer.createTransport({
     host: "smtp.office365.com",
     port: 587,

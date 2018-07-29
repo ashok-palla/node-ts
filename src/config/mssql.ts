@@ -3,10 +3,10 @@ import * as log from "../logger/log";
 import { isUndefined } from "util";
 
 const config: object = {
-    user: "PM_Login",
-    password: "7mpzidn49DG$!RQ",
-    server: "10.10.0.9",
-    database: "Employee_New"
+    user: "",
+    password: "",
+    server: "",
+    database: ""
 };
 
 export let authenticate: any = (body: ILoginRequestParams, callback) => {
