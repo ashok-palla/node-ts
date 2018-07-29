@@ -13,6 +13,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(apiController.globalApiHandler);
 app.get("/", apiController.login);
+app.get("/check", apiController.check);
 app.post("/login", apiController.login);
 
 app.get("/city", apiController.city_get);

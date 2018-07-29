@@ -13,9 +13,14 @@ export let globalApiHandler: any = (req: Request, res: Response, next: NextFunct
     //         });
     //     } else { res.status(401).json("Unauthorization"); }
     // }
+    res.setHeader('Last-Modified', (new Date()).toUTCString());
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 };
-
+export let check: any = (req: Request, res: Response, next) => {
+    res.status(200).json({ asd: 'asd' });
+};
 export let login: any = (req: Request, res: Response) => {
     data_layer.authenticate(req.body as ILoginRequestParams, (response) => {
         if (response.status === 200) { res.header("x-auth", req.body.password); }
