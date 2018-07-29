@@ -1,10 +1,15 @@
+
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as apiController from "./controllers/api";
-const os:any = require("./controllers/os");
+const os: any = require("./controllers/os");
 const app: any = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+import * as swaggerUi from "swagger-ui-express";
+var swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(apiController.globalApiHandler);
 app.get("/", apiController.login);

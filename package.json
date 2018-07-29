@@ -8,11 +8,11 @@
     "dev": "tsc --watch & nodemon dist/server.js",
     "test": "mocha dist/*.test.js",
     "lint": "eslint src --ext ts",
-    "tsc": "tsc",
-    "start": "node server.js"
+    "start": "node server.js",
+    "server": "tsc && node dist/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ashok Palla",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -21,6 +21,7 @@
     "mssql": "^4.1.0",
     "nodemailer": "^4.4.2",
     "os": "^0.1.1",
+    "swagger-ui-express": "^3.0.10",
     "tedious": "2.3.1"
   },
   "devDependencies": {
