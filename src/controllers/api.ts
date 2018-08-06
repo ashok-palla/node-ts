@@ -5,16 +5,36 @@ import * as data_layer from "../config/mssql";
 export let globalApiHandler: any = (req: Request, res: Response, next: NextFunction) => {
     res.setHeader('Last-Modified', (new Date()).toUTCString());
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth, Authorization");
-    if (req.url === "/login") { next(); }
-    else {
-        // 76c9dd40b3d42136ea691f74d17eb5e0
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth, Authorization, hash");
+    if (req.url === "/login") {
+        var secret = Math.random().toString(36).slice(-8);
+        var data = { date: (new Date()).toUTCString() };
         let auth: IToken = req.headers["x-auth"];
         if (auth) {
-            const hash_key_data = crpto_hash.return_hash_data('dg41rq', auth);
-            if (hash_key_data !== 'invalid') {
-                res.header("x-auth", auth);
+            const encrypt = crpto_hash.encrypt(secret, data);
+            if (encrypt !== 'invalid') {
+                res.header("x-auth", secret);
+                res.header("hash", encrypt);
                 next();
+            }
+            else { res.status(401).json("Unauthorization"); }
+        } else { res.status(401).json("Unauthorization"); }
+    }
+    else {
+        var temp_secret = Math.random().toString(36).slice(-8);
+        var data = { date: (new Date()).toUTCString() };
+        let secret: IToken = req.headers["x-auth"];
+        let hash: IToken = req.headers["hash"];
+        if (secret) {
+            const decrypt = crpto_hash.decrypt(secret, hash);
+            if (decrypt !== 'invalid') {
+                const encrypt = crpto_hash.encrypt(temp_secret, data);
+                if (encrypt !== 'invalid') {
+                    res.header("x-auth", temp_secret);
+                    res.header("hash", encrypt);
+                    next();
+                }
+                else { res.status(401).json("Unauthorization"); }
             }
             else { res.status(401).json("Unauthorization"); }
             // data_layer.token_check({ token: auth }, (response) => {
