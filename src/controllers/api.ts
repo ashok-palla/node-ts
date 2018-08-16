@@ -9,7 +9,7 @@ export let globalApiHandler: any = (req: Request, res: Response, next: NextFunct
     if (req.url === "/login") {
         var secret = Math.random().toString(36).slice(-8);
         var data = { date: (new Date()).toUTCString() };
-        let auth: IToken = req.headers["x-auth"];
+        let auth: string = req.headers["x-auth"];
         if (auth) {
             const encrypt = crpto_hash.encrypt(secret, data);
             if (encrypt !== 'invalid') {
@@ -23,8 +23,8 @@ export let globalApiHandler: any = (req: Request, res: Response, next: NextFunct
     else {
         var temp_secret = Math.random().toString(36).slice(-8);
         var data = { date: (new Date()).toUTCString() };
-        let secret: IToken = req.headers["x-auth"];
-        let hash: IToken = req.headers["hash"];
+        let secret: string = req.headers["x-auth"];
+        let hash: string = req.headers["hash"];
         if (secret) {
             const decrypt = crpto_hash.decrypt(secret, hash);
             if (decrypt !== 'invalid') {

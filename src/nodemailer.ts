@@ -9,14 +9,14 @@ let transporter: any = nodemailer.createTransport({
     auth: { user: account.user, pass: account.pass }
 });
 
-export let sendMail: any = (receiversDetails) => {
+export let sendMail = (receiversDetails): void => {
     fs.readFile("./template/error_mail.html", { encoding: "utf-8" }, (err, html) => {
         if (!err) { receiversDetails.html = html.replace("###MSG###", JSON.parse(receiversDetails.text)); }
         queueMail(receiversDetails);
     });
 };
 
-export let queueMail: any = (receiversDetails) => {
+export let queueMail = (receiversDetails): void => {
     let mailOptions: object = {
         from: account.user, // sender address
         to: receiversDetails.to, // list of receivers

@@ -1,5 +1,5 @@
 var crypto = require("crypto");
-export let encrypt: any = (secret: string, data: object) => {
+export let encrypt = (secret: string, data: object) => {
     try {
         var cipher = crypto.createCipher('aes-256-cbc', secret)
         var crypted = cipher.update(JSON.stringify(data), 'utf8', 'hex')
@@ -8,7 +8,7 @@ export let encrypt: any = (secret: string, data: object) => {
     }
     catch (exception) { return 'invalid'; }
 };
-export let decrypt: any = (secret: string, hash: string) => {
+export let decrypt = (secret: string, hash: string) => {
     try {
         var decipher = crypto.createDecipher('aes-256-cbc', secret)
         var data = decipher.update(hash, 'hex', 'utf8')
